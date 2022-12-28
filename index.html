@@ -15,7 +15,7 @@
     <header class="header">
       <div class="header__logo"></div>
     </header>
-    <main>
+    <main class="content">
       <section class="profile">
         <div class="profile__card">
           <img
@@ -25,23 +25,23 @@
          >
           <div class="profile__info">
             <h1 class="profile__name text-fit">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit hover-effect"></button>
+            <button type="button" class="profile__edit" aria-label="Редактировать профиль"></button>
             <p class="profile__description text-fit">Исследователь океана</p>
           </div>
         </div>
-        <button type="button" class="profile__add-card hover-effect"></button>
+        <button type="button" class="profile__add-card" aria-label="Добавить карточку"></button>
       </section>
       <section class="cards" aria-label="Карточки различных мест">
         <ul class="cards__list">
           <li class="card">
             <img
-              src="./images/kirill-pershin-1088404-unsplash.jpg"
+              src="./images/test.jpg"
               alt="Карачаевск"
               class="card__image"
            >
             <div class="card__info">
-              <p class="card__title text-fit">Карачаевск</p>
-              <button type="button" class="card__like hover-effect"></button>
+              <h2 class="card__title text-fit">Карачаевск</h2>
+              <button type="button" class="card__like" aria-label="Нравится"></button>
             </div>
           </li>
           <li class="card">
@@ -51,10 +51,10 @@
               class="card__image"
            >
             <div class="card__info">
-              <p class="card__title text-fit">Гора Эльбрус</p>
+              <h2 class="card__title text-fit">Гора Эльбрус</h2>
               <button
                 type="button"
-                class="card__like card__like_active hover-effect"
+                class="card__like card__like_active" aria-label="Нравится"
               ></button>
             </div>
           </li>
@@ -65,8 +65,8 @@
               class="card__image"
            >
             <div class="card__info">
-              <p class="card__title text-fit">Домбай</p>
-              <button type="button" class="card__like hover-effect"></button>
+              <h2 class="card__title text-fit">Домбай</h2>
+              <button type="button" class="card__like" aria-label="Нравится"></button>
             </div>
           </li>
           <li class="card">
@@ -76,8 +76,8 @@
               class="card__image"
            >
             <div class="card__info">
-              <p class="card__title text-fit">Гора Эльбрус</p>
-              <button type="button" class="card__like hover-effect"></button>
+              <h2 class="card__title text-fit">Гора Эльбрус</h2>
+              <button type="button" class="card__like" aria-label="Нравится"></button>
             </div>
           </li>
           <li class="card">
@@ -87,8 +87,8 @@
               class="card__image"
            >
             <div class="card__info">
-              <p class="card__title text-fit">Домбай</p>
-              <button type="button" class="card__like hover-effect"></button>
+              <h2 class="card__title text-fit">Домбай</h2>
+              <button type="button" class="card__like" aria-label="Нравится"></button>
             </div>
           </li>
           <li class="card">
@@ -98,8 +98,8 @@
               class="card__image"
            >
             <div class="card__info">
-              <p class="card__title text-fit">Карачаево-Черкессия</p>
-              <button type="button" class="card__like hover-effect"></button>
+              <h2 class="card__title text-fit">Карачаево-Черкессия</h2>
+              <button type="button" class="card__like" aria-label="Нравится"></button>
             </div>
           </li>
         </ul>
@@ -110,11 +110,12 @@
     </footer>
     <div class="popup">
       <div class="popup__container">
-        <button type="button" class="popup__close hover-effect"></button>
+        <button type="button" class="popup__close" aria-label="Закрыть форму"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
         <form name="profile-edit" class="form">
           <fieldset class="form__fieldset">
             <input
+              type="text"
               name="name"
               id="name"
               class="form__field form__field_type_name"
@@ -122,6 +123,7 @@
               required
            >
             <input
+              type="text"
               name="description"
               id="description"
               class="form__field form__field_type_job"

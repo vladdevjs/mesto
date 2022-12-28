@@ -7,6 +7,12 @@
   height: 50px;
   cursor: pointer;
 }
+
+.profile__add-card:hover {
+  opacity: 0.6;
+  transition: 0.3s ease;
+}
+
 @media screen and (max-width: 767px) {
   .profile__add-card {
     min-width: 282px;

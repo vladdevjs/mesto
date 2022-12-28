@@ -6,8 +6,15 @@
   height: 24px;
   cursor: pointer;
 }
+
+.profile__edit:hover {
+  opacity: 0.6;
+  transition: 0.3s ease;
+}
+
 @media screen and (max-width: 767px) {
   .profile__edit {
+    background-size: 7.5px;
     height: 18px;
     width: 18px;
   }

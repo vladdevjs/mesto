@@ -10,5 +10,6 @@
   .profile__name {
     font-size: 27px;
     text-align: center;
+    margin-left: 30px;
   }
 }
