@@ -1,5 +1,6 @@
 .profile {
   padding: 40px 0 50px;
+  margin: 0 auto;
   gap: 20px;
   display: flex;
   align-items: center;
@@ -9,6 +10,7 @@
 @media screen and (max-width: 940px) {
   .profile {
     padding: 40px 19px 50px;
+    max-width: 580px;
   }
 }
 
