@@ -1,5 +1,6 @@
 .popup__container {
   padding: 34px 36px 37px;
+  width: 100%;
   max-width: 430px;
   box-sizing: border-box;
   z-index: 2;
