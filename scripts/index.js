@@ -27,3 +27,15 @@ function handleFormSubmit(evt) {
 buttonEdit.addEventListener("click", showPopup);
 buttonClose.addEventListener("click", closePopup);
 formElement.addEventListener("submit", handleFormSubmit);
+
+popup.addEventListener("click", function (e) {
+  if (e.target == popup) {
+    closePopup();
+  }
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    closePopup();
+  }
+});
