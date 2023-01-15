@@ -6,6 +6,7 @@ let nameInput = document.querySelector(".form__field_type_name");
 let jobInput = document.querySelector(".form__field_type_job");
 let profileName = document.querySelector(".profile__name");
 let profileJob = document.querySelector(".profile__description");
+let like = document.querySelectorAll(".card__like");
 
 function showPopup() {
   popup.classList.add("popup_opened");
@@ -38,4 +39,10 @@ document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     closePopup();
   }
+});
+
+like.forEach(function (item) {
+  item.addEventListener("click", function () {
+    this.classList.toggle("card__like_active");
+  });
 });
