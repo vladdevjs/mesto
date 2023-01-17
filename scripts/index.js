@@ -41,6 +41,8 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
+// Лайки
+
 like.forEach(function (item) {
   item.addEventListener("click", function () {
     this.classList.toggle("card__like_active");
