@@ -1,3 +1,5 @@
+# Recommended settings by Yandex
 .editorconfig
+# Prettier extension files
 .prettierignore
 .prettierrc
