@@ -86,7 +86,6 @@ function handleFormProfileSubmit(evt) {
 
 function handleFormCardSubmit(evt) {
   evt.preventDefault();
-  пш;
   const card = cardElement.cloneNode(true);
   const cardImage = card.querySelector(".card__image");
   const cardText = card.querySelector(".card__title");
