@@ -33,7 +33,17 @@
       </section>
       <section class="cards" aria-label="Карточки различных мест">
         <ul class="cards__list">
-          <li class="card">
+          <template id="card-template">
+            <li class="card">
+              <img class="card__image">
+              <button type="button" class="card__delete" aria-label="Удалить"></button>
+              <div class="card__info">
+                <h2 class="card__title text-fit"></h2>
+                <button type="button" class="card__like" aria-label="Нравится"></button>
+              </div>
+            </li>
+          </template>
+          <!-- <li class="card">
             <img
               src="./images/test.jpg"
               alt="Карачаевск"
@@ -101,18 +111,18 @@
               <h2 class="card__title text-fit">Карачаево-Черкессия</h2>
               <button type="button" class="card__like" aria-label="Нравится"></button>
             </div>
-          </li>
+          </li> -->
         </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy;2022 Владислав У</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_profile">
       <div class="popup__container">
-        <button type="button" class="popup__close" aria-label="Закрыть форму"></button>
+        <button type="button" class="popup__close popup__close_type_profile" aria-label="Закрыть форму"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form name="profile-edit" class="form">
+        <form name="profile-edit" class="form form_type_profile">
           <fieldset class="form__fieldset">
             <input
               type="text"
@@ -134,6 +144,39 @@
           <button type="submit" class="form__save">Сохранить</button>
         </form>
       </div>
+    </div>
+    <div class="popup popup_type_card">
+      <div class="popup__container">
+        <button type="button" class="popup__close popup__close_type_card" aria-label="Закрыть форму"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form name="card-create" class="form form_type_card">
+          <fieldset class="form__fieldset">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form__field form__field_type_place"
+              placeholder="Название"
+              required
+           >
+            <input
+              type="text"
+              name="description"
+              id="description"
+              class="form__field form__field_type_image"
+              placeholder="Ссылка на картинку"
+              required
+           >
+          </fieldset>
+          <button type="submit" class="form__save">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_image">
+      <div class="view">
+        <img src = "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg" class="view__image">
+        <h3 class="view__title">Новое место</h3>
+        <button type="button" class="view__close" aria-label="Закрыть форму"></button>
     </div>
     <script src="./scripts/index.js"></script>
   </body>
