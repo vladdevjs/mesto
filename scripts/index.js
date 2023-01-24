@@ -58,8 +58,8 @@ function handleFormProfileSubmit(evt) {
 
 // Helpers
 
-function deleteCard(deleteButton) {
-  const card = deleteButton.closest(".card");
+function deleteCard(button) {
+  const card = button.closest(".card");
   card.remove();
 }
 
@@ -67,33 +67,33 @@ function likeCard(button) {
   button.classList.toggle("card__like_active");
 }
 
-function openImage(src, alt, text) {
+function openImage(src, text) {
   showPopup(popupImage);
   viewImage.src = src;
-  viewImage.alt = alt;
+  viewImage.alt = text;
   viewTitle.textContent = text;
 }
 
 // Create card logics
 
-function createCard(src, alt, text) {
+function createCard(src, text) {
   const card = cardElement.cloneNode(true);
   const cardText = card.querySelector(".card__title");
   const cardImage = card.querySelector(".card__image");
   const deleteButton = card.querySelector(".card__delete");
   const likeButton = card.querySelector(".card__like");
   cardImage.src = src;
-  cardImage.alt = alt;
+  cardImage.alt = text;
   cardText.textContent = text;
   deleteButton.addEventListener("click", () => deleteCard(deleteButton));
   likeButton.addEventListener("click", () => likeCard(likeButton));
-  cardImage.addEventListener("click", () => openImage(src, alt, text));
+  cardImage.addEventListener("click", () => openImage(src, text));
   return card;
 }
 
 function handleFormCardSubmit(evt) {
   evt.preventDefault();
-  const card = createCard(imageInput.value, placeInput.value, placeInput.value);
+  const card = createCard(imageInput.value, placeInput.value);
   cardList.prepend(card);
   closePopup(popupCard);
   evt.target.reset();
@@ -114,6 +114,6 @@ formCard.addEventListener("submit", handleFormCardSubmit);
 // Add cards from array
 
 initialCards.forEach(function (item) {
-  const card = createCard(item.link, item.name, item.name);
+  const card = createCard(item.link, item.name);
   cardList.append(card);
 });
