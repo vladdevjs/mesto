@@ -137,7 +137,7 @@ cardImage.forEach(function (item) {
   item.addEventListener("click", function () {
     showImagePopup();
     viewImage.src = this.src;
-    viewImage.src = this.alt;
+    viewImage.alt = this.alt;
     viewTitle.textContent = this.alt;
   });
 });
