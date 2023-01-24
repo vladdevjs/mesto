@@ -55,7 +55,7 @@ const cardTemplate = document.querySelector("#card-template").content;
 const cardList = document.querySelector(".cards__list");
 const cardElement = cardTemplate.querySelector(".card");
 
-// Show/close popup
+// Show/close popup functions
 
 function showCardPopup() {
   popupCard.classList.add("popup_opened");
@@ -137,6 +137,7 @@ cardImage.forEach(function (item) {
   item.addEventListener("click", function () {
     showImagePopup();
     viewImage.src = this.src;
+    viewImage.src = this.alt;
     viewTitle.textContent = this.alt;
   });
 });
