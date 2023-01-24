@@ -86,6 +86,7 @@ function handleFormProfileSubmit(evt) {
 
 function handleFormCardSubmit(evt) {
   evt.preventDefault();
+  пш;
   const card = cardElement.cloneNode(true);
   const cardImage = card.querySelector(".card__image");
   const cardText = card.querySelector(".card__title");
@@ -94,6 +95,7 @@ function handleFormCardSubmit(evt) {
   cardText.textContent = placeInput.value;
   cardList.prepend(card);
   closePopup(popupCard);
+  evt.target.reset();
 }
 
 // Handlers
