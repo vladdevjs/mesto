@@ -113,20 +113,22 @@ formCard.addEventListener("submit", handleFormCardSubmit);
 
 // Close popup on Esc press and click outside
 
-function getActivePopup() {
-  const popup = document.querySelector(".popup_opened");
-  return popup;
-}
+const activePopup = () => {
+  const activePopup = document.querySelector(".popup_opened");
+  return activePopup;
+};
 
 document.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
-    closePopup(getActivePopup());
+    if (activePopup()) {
+      closePopup(activePopup());
+    }
   }
 });
 
 document.addEventListener("click", function (evt) {
-  if (evt.target == getActivePopup()) {
-    closePopup(getActivePopup());
+  if (evt.target == activePopup()) {
+    closePopup(activePopup());
   }
 });
 
