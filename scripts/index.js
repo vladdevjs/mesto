@@ -133,9 +133,11 @@ document.addEventListener("click", function (evt) {
 });
 
 // Add cards from array
-
-const cards = initialCards.map(function (item) {
-  const card = createCard(item.link, item.name);
-  return card;
-});
-cardList.append(...cards);
+function addCards() {
+  const cards = initialCards.map(function (item) {
+    const card = createCard(item.link, item.name);
+    return card;
+  });
+  cardList.append(...cards);
+}
+addCards();
