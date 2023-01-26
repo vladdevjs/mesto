@@ -111,6 +111,25 @@ buttonCloseImage.addEventListener("click", () => closePopup(popupImage));
 formProfile.addEventListener("submit", handleFormProfileSubmit);
 formCard.addEventListener("submit", handleFormCardSubmit);
 
+// Close popup on Esc press and click outside
+
+function getActivePopup() {
+  const popup = document.querySelector(".popup_opened");
+  return popup;
+}
+
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    closePopup(getActivePopup());
+  }
+});
+
+document.addEventListener("click", function (evt) {
+  if (evt.target == getActivePopup()) {
+    closePopup(getActivePopup());
+  }
+});
+
 // Add cards from array
 
 initialCards.forEach(function (item) {
