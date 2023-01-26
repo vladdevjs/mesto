@@ -58,8 +58,7 @@ function handleFormProfileSubmit(evt) {
 
 // Helpers
 
-function deleteCard(button) {
-  const card = button.closest(".card");
+function deleteCard(card) {
   card.remove();
 }
 
@@ -85,7 +84,7 @@ function createCard(src, text) {
   cardImage.src = src;
   cardImage.alt = text;
   cardText.textContent = text;
-  deleteButton.addEventListener("click", () => deleteCard(deleteButton));
+  deleteButton.addEventListener("click", () => deleteCard(card));
   likeButton.addEventListener("click", () => likeCard(likeButton));
   cardImage.addEventListener("click", () => openImage(src, text));
   return card;
