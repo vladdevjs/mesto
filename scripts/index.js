@@ -134,7 +134,8 @@ document.addEventListener("click", function (evt) {
 
 // Add cards from array
 
-initialCards.forEach(function (item) {
+const cards = initialCards.map(function (item) {
   const card = createCard(item.link, item.name);
-  cardList.append(card);
+  return card;
 });
+cardList.append(...cards);
