@@ -1,5 +1,3 @@
-// Constants declarations
-
 const buttonEdit = document.querySelector(".profile__edit");
 const buttonCreate = document.querySelector(".profile__add-card");
 
@@ -29,17 +27,33 @@ const cardTemplate = document.querySelector("#card-template").content;
 const cardList = document.querySelector(".cards__list");
 const cardElement = cardTemplate.querySelector(".card");
 
-// Universal show/close popup functions
-
-function showPopup(popup) {
-  popup.classList.add("popup_opened");
-}
+const activePopup = () => {
+  return document.querySelector(".popup_opened");
+};
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeOnEscPress);
+  document.removeEventListener("click", closeOnOverlayClick);
 }
 
-// Get current profile name and description
+function showPopup(popup) {
+  popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeOnEscPress);
+  document.addEventListener("click", closeOnOverlayClick);
+}
+
+function closeOnOverlayClick(evt) {
+  if (evt.target == activePopup()) {
+    closePopup(activePopup());
+  }
+}
+
+function closeOnEscPress(evt) {
+  if (evt.key === "Escape") {
+    closePopup(activePopup());
+  }
+}
 
 function showProfilePopup() {
   showPopup(popupProfile);
@@ -47,16 +61,12 @@ function showProfilePopup() {
   jobInput.value = profileJob.textContent;
 }
 
-// Update default values
-
 function handleFormProfileSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(popupProfile);
 }
-
-// Helpers
 
 function deleteCard(card) {
   card.remove();
@@ -72,8 +82,6 @@ function openImage(src, text) {
   viewImage.alt = text;
   viewTitle.textContent = text;
 }
-
-// Create card logics
 
 function createCard(src, text) {
   const card = cardElement.cloneNode(true);
@@ -97,9 +105,6 @@ function handleFormCardSubmit(evt) {
   closePopup(popupCard);
   evt.target.reset();
 }
-
-// Handlers
-
 buttonEdit.addEventListener("click", () => showProfilePopup(popupProfile));
 buttonCreate.addEventListener("click", () => showPopup(popupCard));
 
@@ -110,28 +115,6 @@ buttonCloseImage.addEventListener("click", () => closePopup(popupImage));
 formProfile.addEventListener("submit", handleFormProfileSubmit);
 formCard.addEventListener("submit", handleFormCardSubmit);
 
-// Close popup on Esc press and click outside
-
-const activePopup = () => {
-  const activePopup = document.querySelector(".popup_opened");
-  return activePopup;
-};
-
-document.addEventListener("keydown", function (evt) {
-  if (evt.key === "Escape") {
-    if (activePopup()) {
-      closePopup(activePopup());
-    }
-  }
-});
-
-document.addEventListener("click", function (evt) {
-  if (evt.target == activePopup()) {
-    closePopup(activePopup());
-  }
-});
-
-// Add cards from array
 function addCards() {
   const cards = initialCards.map(function (item) {
     const card = createCard(item.link, item.name);

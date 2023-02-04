@@ -5,12 +5,17 @@
   border: 0;
   box-sizing: border-box;
   outline: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #c4c4c4;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
+  margin-bottom: 5px;
 }
 
-.form__field:first-child {
-  margin-bottom: 30px;
+.form__field::-webkit-input-placeholder {
+  color: #c4c4c4;
+}
+
+.form__field:-moz-placeholder {
+  color: #c4c4c4;
 }
