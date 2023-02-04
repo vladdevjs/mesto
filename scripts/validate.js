@@ -1,3 +1,12 @@
+const validationSettings = {
+  formSelector: ".form",
+  inputSelector: ".form__field",
+  submitButtonSelector: ".form__save",
+  inactiveButtonClass: "form__save_disabled",
+  inputErrorClass: "form__field_type_error",
+  errorClass: "-field-error",
+};
+
 const getErrorElement = (formElement, inputElement, errorClass) => {
   return formElement.querySelector(`.${inputElement.id}${errorClass}`);
 };
@@ -94,11 +103,4 @@ const enableValidation = (obj) => {
   });
 };
 
-enableValidation({
-  formSelector: ".form",
-  inputSelector: ".form__field",
-  submitButtonSelector: ".form__save",
-  inactiveButtonClass: "form__save_disabled",
-  inputErrorClass: "form__field_type_error",
-  errorClass: "-field-error",
-});
+enableValidation(validationSettings);
