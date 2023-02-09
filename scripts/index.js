@@ -28,6 +28,10 @@ const cardElement = cardTemplate.querySelector('.card');
 
 const escKeyValue = 'Escape';
 
+const activePopup = () => {
+  return document.querySelector('.popup_opened');
+};
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeOnEscPress);
@@ -36,20 +40,21 @@ function closePopup(popup) {
 
 function showPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => closeOnEscPress(evt, popup));
-  popup.addEventListener('click', (evt) => closeOnClick(evt, popup));
+  document.addEventListener('keydown', closeOnEscPress);
+  popup.addEventListener('click', closeOnClick);
 }
 
-function closeOnClick(evt, popup) {
+function closeOnClick(evt) {
+  const popup = activePopup();
   const closeButton = popup.querySelector('.popup__close');
   if (evt.target === popup || evt.target === closeButton) {
     closePopup(popup);
   }
 }
 
-function closeOnEscPress(evt, popup) {
+function closeOnEscPress(evt) {
   if (evt.key === escKeyValue) {
-    closePopup(popup);
+    closePopup(activePopup());
   }
 }
 
@@ -126,6 +131,10 @@ addCards();
 
 buttonEdit.addEventListener('click', () => showProfilePopup(popupProfile));
 buttonCreate.addEventListener('click', () => showCardPopup(popupCard));
+
+// buttonCloseProfile.addEventListener('click', () => closePopup(popupProfile));
+// buttonCloseCard.addEventListener('click', () => closePopup(popupCard));
+// buttonCloseImage.addEventListener('click', () => closePopup(popupImage));
 
 formProfile.addEventListener('submit', handleFormProfileSubmit);
 formCard.addEventListener('submit', handleFormCardSubmit);
