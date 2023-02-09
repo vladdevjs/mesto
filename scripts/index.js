@@ -41,7 +41,6 @@ function showPopup(popup) {
 }
 
 function closeOnClick(evt, popup) {
-  console.log(popup);
   const closeButton = popup.querySelector('.popup__close');
   if (evt.target === popup || evt.target === closeButton) {
     closePopup(popup);
