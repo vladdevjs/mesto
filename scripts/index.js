@@ -132,9 +132,5 @@ addCards();
 buttonEdit.addEventListener('click', () => showProfilePopup(popupProfile));
 buttonCreate.addEventListener('click', () => showCardPopup(popupCard));
 
-// buttonCloseProfile.addEventListener('click', () => closePopup(popupProfile));
-// buttonCloseCard.addEventListener('click', () => closePopup(popupCard));
-// buttonCloseImage.addEventListener('click', () => closePopup(popupImage));
-
 formProfile.addEventListener('submit', handleFormProfileSubmit);
 formCard.addEventListener('submit', handleFormCardSubmit);
