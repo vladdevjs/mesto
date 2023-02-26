@@ -1,4 +1,4 @@
-import { Card } from './Сard.js';
+import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { initialCards, config } from './Const.js';
 
@@ -35,6 +35,15 @@ const activePopup = () => {
   return document.querySelector('.popup_opened');
 };
 
+const getFormByPopup = (popup) => {
+  const form = popup.querySelector('.form');
+  return form;
+};
+
+const clearFormFields = (popup) => {
+  getFormByPopup(popup).reset();
+};
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeOnEscPress);
@@ -61,26 +70,38 @@ function closeOnEscPress(evt) {
   }
 }
 
-function disableButton(button) {
-  button.classList.add('form__save_disabled');
-  button.setAttribute('disabled', true);
+function disableButton(popup) {
+  const formValidator = new FormValidator(config, getFormByPopup(popup));
+  formValidator.disableSubmitButton();
+}
+
+function hideValidationError(popup) {
+  const form = getFormByPopup(popup);
+  const inputs = Array.from(form.querySelectorAll('.form__field'));
+  const formValidator = new FormValidator(config, form);
+  inputs.forEach((input) => {
+    formValidator.hideValidationError(input);
+  });
 }
 
 function showProfilePopup() {
   showPopup(popupProfile);
+  hideValidationError(popupProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  disableButton(buttonSaveProfile);
+  disableButton(popupProfile);
 }
 
 function showCardPopup() {
+  clearFormFields(popupCard);
+  hideValidationError(popupCard);
   showPopup(popupCard);
-  disableButton(buttonSaveCard);
+  disableButton(popupCard);
 }
 
 function handleFormProfileSubmit(evt) {
   evt.preventDefault();
-  disableButton(buttonSaveProfile);
+  disableButton(popupProfile);
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(popupProfile);
@@ -93,20 +114,24 @@ function openImage(src, text) {
   viewTitle.textContent = text;
 }
 
+function createCard(data, templateSelector, openImage) {
+  const card = new Card(data, templateSelector, openImage);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
 function handleFormCardSubmit(evt) {
   evt.preventDefault();
-  disableButton(buttonSaveCard);
+  disableButton(popupCard);
   const formValue = { name: placeInput.value, link: imageInput.value };
-  const card = new Card(formValue, '#card-template', openImage);
-  const cardElement = card.generateCard();
+  const cardElement = createCard(formValue, '#card-template', openImage);
   cardList.prepend(cardElement);
   closePopup(popupCard);
   evt.target.reset();
 }
 
 initialCards.forEach((item) => {
-  const card = new Card(item, '#card-template', openImage);
-  const cardElement = card.generateCard();
+  const cardElement = createCard(item, '#card-template', openImage);
   cardList.append(cardElement);
 });
 
