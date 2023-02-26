@@ -9,16 +9,13 @@ const popupProfile = document.querySelector('.popup_type_profile');
 const popupCard = document.querySelector('.popup_type_card');
 const popupImage = document.querySelector('.popup_type_image');
 
-const buttonSaveCard = popupCard.querySelector('.form__save');
-const buttonSaveProfile = popupProfile.querySelector('.form__save');
-
 const formProfile = popupProfile.querySelector('.form');
-const nameInput = document.querySelector('.form__field_type_name');
-const jobInput = document.querySelector('.form__field_type_job');
+const nameInput = formProfile.querySelector('.form__field_type_name');
+const jobInput = formProfile.querySelector('.form__field_type_job');
 
 const formCard = popupCard.querySelector('.form');
-const placeInput = document.querySelector('.form__field_type_place');
-const imageInput = document.querySelector('.form__field_type_image');
+const placeInput = formCard.querySelector('.form__field_type_place');
+const imageInput = formCard.querySelector('.form__field_type_image');
 
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__description');
@@ -35,13 +32,8 @@ const activePopup = () => {
   return document.querySelector('.popup_opened');
 };
 
-const getFormByPopup = (popup) => {
-  const form = popup.querySelector('.form');
-  return form;
-};
-
-const clearFormFields = (popup) => {
-  getFormByPopup(popup).reset();
+const clearFormFields = (form) => {
+  form.reset();
 };
 
 function closePopup(popup) {
@@ -70,13 +62,12 @@ function closeOnEscPress(evt) {
   }
 }
 
-function disableButton(popup) {
-  const formValidator = new FormValidator(config, getFormByPopup(popup));
+function disableButton(form) {
+  const formValidator = new FormValidator(config, form);
   formValidator.disableSubmitButton();
 }
 
-function hideValidationError(popup) {
-  const form = getFormByPopup(popup);
+function hideValidationError(form) {
   const inputs = Array.from(form.querySelectorAll('.form__field'));
   const formValidator = new FormValidator(config, form);
   inputs.forEach((input) => {
@@ -86,22 +77,22 @@ function hideValidationError(popup) {
 
 function showProfilePopup() {
   showPopup(popupProfile);
-  hideValidationError(popupProfile);
+  hideValidationError(formProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  disableButton(popupProfile);
+  disableButton(formProfile);
 }
 
 function showCardPopup() {
-  clearFormFields(popupCard);
-  hideValidationError(popupCard);
+  clearFormFields(formCard);
+  hideValidationError(formCard);
   showPopup(popupCard);
-  disableButton(popupCard);
+  disableButton(formCard);
 }
 
 function handleFormProfileSubmit(evt) {
   evt.preventDefault();
-  disableButton(popupProfile);
+  disableButton(formProfile);
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(popupProfile);
@@ -122,7 +113,7 @@ function createCard(data, templateSelector, openImage) {
 
 function handleFormCardSubmit(evt) {
   evt.preventDefault();
-  disableButton(popupCard);
+  disableButton(formCard);
   const formValue = { name: placeInput.value, link: imageInput.value };
   const cardElement = createCard(formValue, '#card-template', openImage);
   cardList.prepend(cardElement);
