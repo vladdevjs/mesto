@@ -1,5 +1,3 @@
-// Validation settings
-
 export const config = {
   formSelector: '.form',
   inputSelector: '.form__field',
@@ -8,8 +6,6 @@ export const config = {
   inputErrorClass: 'form__field_type_error',
   errorClass: '-field-error',
 };
-
-// Cards
 
 export const initialCards = [
   {

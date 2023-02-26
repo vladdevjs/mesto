@@ -1,6 +1,6 @@
 import { Card } from './Сard.js';
 import { FormValidator } from './FormValidator.js';
-import { initialCards, config } from './constants.js';
+import { initialCards, config } from './Const.js';
 
 const buttonEdit = document.querySelector('.profile__edit');
 const buttonCreate = document.querySelector('.profile__add-card');
