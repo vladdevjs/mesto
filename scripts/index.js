@@ -62,37 +62,35 @@ function closeOnEscPress(evt) {
   }
 }
 
-function disableButton(form) {
-  const formValidator = new FormValidator(config, form);
-  formValidator.disableSubmitButton();
+function disableButton(form, validator) {
+  validator.disableSubmitButton();
 }
 
-function hideValidationError(form) {
+function hideValidationError(form, validator) {
   const inputs = Array.from(form.querySelectorAll('.form__field'));
-  const formValidator = new FormValidator(config, form);
   inputs.forEach((input) => {
-    formValidator.hideValidationError(input);
+    validator.hideValidationError(input);
   });
 }
 
 function showProfilePopup() {
   showPopup(popupProfile);
-  hideValidationError(formProfile);
+  hideValidationError(formProfile, formProfileValidator);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  disableButton(formProfile);
+  disableButton(formProfile, formProfileValidator);
 }
 
 function showCardPopup() {
   clearFormFields(formCard);
-  hideValidationError(formCard);
+  hideValidationError(formCard, formCardValidator);
   showPopup(popupCard);
-  disableButton(formCard);
+  disableButton(formCard, formCardValidator);
 }
 
 function handleFormProfileSubmit(evt) {
   evt.preventDefault();
-  disableButton(formProfile);
+  disableButton(formProfile, formProfileValidator);
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(popupProfile);
@@ -113,7 +111,7 @@ function createCard(data, templateSelector, openImage) {
 
 function handleFormCardSubmit(evt) {
   evt.preventDefault();
-  disableButton(formCard);
+  disableButton(formCard, formCardValidator);
   const formValue = { name: placeInput.value, link: imageInput.value };
   const cardElement = createCard(formValue, '#card-template', openImage);
   cardList.prepend(cardElement);
@@ -126,10 +124,11 @@ initialCards.forEach((item) => {
   cardList.append(cardElement);
 });
 
-formList.forEach((form) => {
-  const formValidator = new FormValidator(config, form);
-  formValidator.enableValidation();
-});
+const formProfileValidator = new FormValidator(config, formProfile);
+const formCardValidator = new FormValidator(config, formCard);
+
+formProfileValidator.enableValidation();
+formCardValidator.enableValidation();
 
 buttonEdit.addEventListener('click', () => showProfilePopup(popupProfile));
 buttonCreate.addEventListener('click', () => showCardPopup(popupCard));
