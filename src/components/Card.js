@@ -1,9 +1,11 @@
-export class Card {
-  constructor(data, templateSelector, openImage) {
-    this._text = data.name;
-    this._image = data.link;
+import placeholder from '../images/placeholder.jpg';
+
+export default class Card {
+  constructor({ name, link }, templateSelector, handleCardClick) {
+    this._text = name;
+    this._image = link;
     this._templateSelector = templateSelector;
-    this._openImage = openImage;
+    this._handleCardClick = handleCardClick;
     this._element = this._getTemplate();
     this._imageElement = this._element.querySelector('.card__image');
   }
@@ -21,6 +23,9 @@ export class Card {
     this._element.querySelector('.card__title').textContent = this._text;
     this._imageElement.src = this._image;
     this._imageElement.alt = this._text;
+    this._imageElement.onerror = () => {
+      this._imageElement.src = placeholder; //if the image link is broken/invalid, use placeholder
+    };
     return this._element;
   }
 
@@ -34,7 +39,7 @@ export class Card {
       this._handleLikeBtnClick();
     });
     this._imageElement.addEventListener('click', () => {
-      this._openImage(this._image, this._text);
+      this._handleCardClick(this._text, this._imageElement.src); // passing link to final asset: image or placeholder
     });
   }
 
