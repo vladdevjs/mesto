@@ -45,6 +45,7 @@ export default class Card {
 
   _handleDeleteBtnClick() {
     this._element.remove();
+    this._element = null; //nullifing object to free up memory
   }
 
   _handleLikeBtnClick() {

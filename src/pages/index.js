@@ -22,7 +22,7 @@ import {
 const popupImage = new PopupWithImage('.popup_type_image');
 popupImage.setEventListeners();
 
-const renderer = (item) => {
+const renderCard = (item) => {
   const card = new Card(item, templateSelector, (name, link) => {
     popupImage.open(name, link);
   });
@@ -31,7 +31,7 @@ const renderer = (item) => {
 };
 
 const cardList = new Section(
-  { items: initialCards, renderer },
+  { items: initialCards, renderer: renderCard },
   containerSelector
 );
 cardList.renderItems();
@@ -50,7 +50,7 @@ popupProfile.setEventListeners();
 const popupCard = new PopupWithForm(
   '.popup_type_card',
   ({ place: name, image: link }) => {
-    cardList.addItem(renderer({ name, link }));
+    cardList.addItem(renderCard({ name, link }));
   }
 );
 popupCard.setEventListeners();
