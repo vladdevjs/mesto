@@ -1,3 +1,5 @@
+import { errorMessage } from '../utils/сonstants.js';
+
 export default class ErrorPopup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
@@ -5,7 +7,7 @@ export default class ErrorPopup {
   }
 
   show(message) {
-    this._message.textContent = message;
+    this._message.textContent = `${errorMessage} ${message}`;
     this._popup.classList.add('error-popup_showed');
     setTimeout(() => {
       this._popup.classList.remove('error-popup_showed');

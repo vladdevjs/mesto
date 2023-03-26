@@ -95,16 +95,16 @@ export default class Card {
 
   _handleLikeBtnClick() {
     if (this._isLiked()) {
-      this._likeButtonElement.classList.remove('card__like_active');
       this._handleDislikeButton(this._cardId)
         .then((data) => {
+          this._likeButtonElement.classList.remove('card__like_active');
           this._updateLikes(data);
         })
         .catch((err) => this._handleError(err));
     } else {
-      this._likeButtonElement.classList.add('card__like_active');
       this._handleLikeButton(this._cardId)
         .then((data) => {
+          this._likeButtonElement.classList.add('card__like_active');
           this._updateLikes(data);
         })
         .catch((err) => this._handleError(err));
