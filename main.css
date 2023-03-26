@@ -48,4 +48,5 @@
 .error-popup{align-items:center;background:#df5151;border-radius:.5rem;display:flex;gap:10px;justify-content:left;max-width:50%;opacity:0;padding:10px;position:fixed;right:10px;top:10px;transition:all .8s;visibility:hidden}
 .error-popup__image{width:20px}
 .error-popup__message{margin:0;padding:0}
+.error-popup_showed{opacity:1;visibility:visible}
 
