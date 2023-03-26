@@ -22,7 +22,7 @@
 .card__delete{background:url(823b0cf1b0b7e9cb7cad.svg) no-repeat 50%;background-size:contain;border:none;cursor:pointer;display:block;height:19px;outline:none;position:absolute;right:20px;top:20px;width:18px;z-index:1}.card__delete:hover{opacity:.6;transition:.3s ease}
 .card__like-container{display:flex;flex-direction:column}
 .card__like{background:url(1ad06e85f169668a1f36.svg) no-repeat 50%;background-size:contain;border:none;cursor:pointer;display:block;height:19px;width:22px}.card__like:hover{opacity:.5;transition:.3s ease}
-.card__like-count{font-size:13px;font-weight:400;line-height:16px;text-align:center}
+.card__like-count{font-size:13px;font-weight:400;line-height:16px;min-height:22px;text-align:center}
 .card__like_active{background-image:url(35948469632d0421d697.svg)}
 .footer{flex-shrink:0;padding:66px 0 60px}@media screen and (max-width:940px){.footer{padding:48px 19px 36px}}
 .footer__copyright{color:#545454;font-size:18px;font-weight:400;line-height:1.2;margin:0}@media screen and (max-width:767px){.footer__copyright{font-size:14px}}
@@ -45,7 +45,7 @@
 .form__save{background-color:#000;border:0;border-radius:2px;box-sizing:border-box;color:#fff;cursor:pointer;font-size:18px;height:50px;line-height:1.2;margin:18px 0 0;padding:0;text-align:center;width:100%}.form__save:hover:enabled{opacity:.8;transition:.3s ease}@media screen and (max-width:767px){.form__save{font-size:14px;margin-top:45px}}
 .form__save_disabled{background-color:#fff;border:1px solid #c4c4c4;color:#c4c4c4;cursor:default}
 .text-fit{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.error-popup{align-items:center;background:#c00;border-radius:.5rem;display:flex;gap:10px;justify-content:left;max-width:50%;opacity:0;padding:10px;position:fixed;right:10px;top:10px;transition:all .8s;visibility:hidden}
+.error-popup{align-items:center;background:#df5151;border-radius:.5rem;display:flex;gap:10px;justify-content:left;max-width:50%;opacity:0;padding:10px;position:fixed;right:10px;top:10px;transition:all .8s;visibility:hidden}
 .error-popup__image{width:20px}
 .error-popup__message{margin:0;padding:0}
 
