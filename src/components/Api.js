@@ -1,4 +1,4 @@
-import { errorMessage } from '../utils/сonstants.js';
+import { errorMessageCode } from '../utils/сonstants.js';
 
 export default class Api {
   constructor(options) {
@@ -10,7 +10,7 @@ export default class Api {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`${errorMessage} ${res.status}`);
+    return Promise.reject(`${errorMessageCode} ${res.status}`);
   }
 
   getInitialCards() {
