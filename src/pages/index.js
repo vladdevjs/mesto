@@ -47,14 +47,33 @@ const renderCard = (item) => {
     (name, link) => {
       popupImage.open(name, link);
     },
-    (el, id) => {
-      popupConfirmation.setElement(el);
-      popupConfirmation.setId(id);
+    () => {
       popupConfirmation.open();
+      popupConfirmation.setHandler(() => {
+        const id = card.getCardId();
+        api
+          .deleteCard(id)
+          .then(() => {
+            popupConfirmation.close();
+            card.deleteCard();
+          })
+          .catch((err) => {
+            errorPopup.show(err);
+          });
+      });
     },
-    (id) => api.likeCard(id),
-    (id) => api.dislikeCard(id),
-    (err) => errorPopup.show(err),
+    (id) => {
+      api
+        .likeCard(id)
+        .then((data) => card.likeCard(data))
+        .catch((err) => errorPopup.show(err));
+    },
+    (id) => {
+      api
+        .dislikeCard(id)
+        .then((data) => card.dislikeCard(data))
+        .catch((err) => errorPopup.show(err));
+    },
     userInfo.getUserId()
   );
   const cardElement = card.generateCard();
@@ -82,17 +101,7 @@ Promise.all([api.getUserData(), api.getInitialCards()])
 const popupImage = new PopupWithImage('.popup_type_image');
 popupImage.setEventListeners();
 
-const popupConfirmation = new PopupWithConfirmation(
-  '.popup_type_confirmation',
-  (id) => {
-    api
-      .deleteCard(id)
-      .then(() => {})
-      .catch((err) => {
-        errorPopup.show(err);
-      });
-  }
-);
+const popupConfirmation = new PopupWithConfirmation('.popup_type_confirmation');
 
 popupConfirmation.setEventListeners();
 
