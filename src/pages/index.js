@@ -13,9 +13,7 @@ import { config, AUTHORIZATION_TOKEN, GROUP_ID } from '../utils/сonstants.js';
 
 export const containerSelector = '.cards__list';
 export const templateSelector = '#card-template';
-export const buttonEditAvatar = document.querySelector(
-  '.profile__avatar-change'
-);
+export const buttonEditAvatar = document.querySelector('.profile__avatar-change');
 export const buttonEditProfile = document.querySelector('.profile__edit');
 export const buttonCreateCard = document.querySelector('.profile__add-card');
 export const formAvatar = document.querySelector('.form_type_avatar');
@@ -80,10 +78,7 @@ const renderCard = (item) => {
   return cardElement;
 };
 
-const cardList = new Section(
-  { items: [], renderer: renderCard },
-  containerSelector
-);
+const cardList = new Section({ items: [], renderer: renderCard }, containerSelector);
 
 Promise.all([api.getUserData(), api.getInitialCards()])
   .then(([userData, cards]) => {
@@ -119,21 +114,18 @@ const popupProfile = new PopupWithForm('.popup_type_profile', (data) => {
 });
 popupProfile.setEventListeners();
 
-const popupCard = new PopupWithForm(
-  '.popup_type_card',
-  ({ place: name, image: link }) => {
-    api
-      .addCard({ name, link })
-      .then((cardData) => {
-        cardList.prependItem(renderCard(cardData));
-        popupCard.close();
-      })
-      .catch((err) => {
-        errorPopup.show(err);
-      })
-      .finally(() => popupCard.renderLoading(false));
-  }
-);
+const popupCard = new PopupWithForm('.popup_type_card', ({ place: name, image: link }) => {
+  api
+    .addCard({ name, link })
+    .then((cardData) => {
+      cardList.prependItem(renderCard(cardData));
+      popupCard.close();
+    })
+    .catch((err) => {
+      errorPopup.show(err);
+    })
+    .finally(() => popupCard.renderLoading(false));
+});
 popupCard.setEventListeners();
 
 const popupAvatar = new PopupWithForm('.popup_type_avatar', ({ avatar }) => {

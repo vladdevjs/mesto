@@ -24,11 +24,7 @@ export default class Card {
   }
 
   _getTemplate() {
-    const cardElement = document
-      .querySelector(this._templateSelector)
-      .content.querySelector('.card')
-      .cloneNode(true);
-    return cardElement;
+    return document.querySelector(this._templateSelector).content.querySelector('.card').cloneNode(true);
   }
 
   _showLikes() {
